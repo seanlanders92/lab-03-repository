@@ -1,4 +1,4 @@
-$.ajax('data/page-1.json', { method: 'GET', dataType: 'JSON' })
+$.ajax('data/page-2.json', {method: 'GET', dataType: 'JSON'})
     .then(data => {
         data.forEach(element => {
             new Monster(element).render();
@@ -6,24 +6,24 @@ $.ajax('data/page-1.json', { method: 'GET', dataType: 'JSON' })
         menuRender();
     })
 
-const keywordsDropDown = [];
+ const keywordsDropDown = [];
 
-const keywordsFunction = (stringValue) => {
-    let add = true;
-    keywordsDropDown.forEach(element => {
-
-        if (element === stringValue) {
+ const keywordsFunction = (stringValue) => {
+     let add = true;
+     keywordsDropDown.forEach(element => {
+         
+         if(element === stringValue){
             add = false;
 
         }
     })
-    if (add === true) {
-        keywordsDropDown.push(stringValue);
-    }
-}
-let monsterArr = [];
+        if(add === true){
+            keywordsDropDown.push(stringValue);
+        }
+ }
+ let monsterArr = [];
 
-function Monster(obj) {
+function Monster(obj){
     this.image = obj.image_url;
     this.title = obj.title;
     this.description = obj.description;
@@ -31,18 +31,18 @@ function Monster(obj) {
     this.horns = obj.horns;
 
     keywordsFunction(this.keyword);
-    monsterArr.push(this)
+    monsterArr.push(this);
 }
 
-Monster.prototype.render = function () {
+Monster.prototype.render = function(){
     const templateSource = $('#photo-template').html();
 
     const myTemplate = Handlebars.compile(templateSource);
     // const $myTemplate = $('<section></section>').attr('class', this.keyword);
-
+    
     let stringPara = this.description + '. There are ' + this.horns + ' horn(s) on the ' + this.title + '.';
 
-    const context = { keyword: this.keyword, title: this.title, image: this.image, keyword: this.keyword, description: stringPara };
+    const context = { keyword: this.keyword, title: this.title, image: this.image, keyword: this.keyword, description: stringPara};
 
     const html = myTemplate(context);
     $('main').append(html);
@@ -59,7 +59,7 @@ Monster.prototype.render = function () {
     // $('main').append($myTemplate);
 }
 
-const menuRender = () => {
+const menuRender =() => {   
 
     keywordsDropDown.forEach(element => {
 
@@ -69,13 +69,13 @@ const menuRender = () => {
     })
 }
 
-$('#menu').change(function () {
+$('#menu').change(function(){
     // $(document).ready();
     //change style
     // $('section').filter(event.target.value)
 
 
-    if (event.target.value === 'default') {
+    if(event.target.value === 'default'){
         $('section').hide();
     } else {
         $('section').hide();
@@ -86,44 +86,8 @@ $('#menu').change(function () {
 
 })
 
-$('#sort').change(function () {
-    // $(document).ready();
-    //change style
-    // $('section').filter(event.target.value)
 
 
-    if (event.target.value === 'horns') {
-        monsterArr.sort((a, b) => {
-            if (a.horns > b.horns) {
-                return 1;
-            } else if (a.horns < b.horns) {
-                return -1;
-            } else {
-                return 0;
-            }
-        })
-    } else if (event.target.value === 'name') {
-        monsterArr.sort((a, b) => {
-            if (a.title > b.title) {
-                return 1;
-            } else if (a.title < b.title) {
-                return -1;
-            } else {
-                return 0;
-            }
-
-            // $('section').hide();
-            // $(`.${event.target.value}`).show();
-            // // let x = $(e.target.getAttribute('value'))
-            // // $(x).show();
-        })
-    }
-    console.log(monsterArr);
-    $('section').empty();
-    monsterArr.forEach(element => {
-        element.render();
-    })
-})
 // {
 //     "image_url": "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg",
 //     "title": "UniWhal",
@@ -137,4 +101,3 @@ $('#sort').change(function () {
 //         <img src="" alt="">
 //         <p></p>
 //       </section>
-
