@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>The Gallery of Horns</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/layout.css">
+
+<head>
+  <title>The Gallery of Horns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/layout.css">
+  <script id="photo-template" type="text/x-handlebars-template">
+    <section class={{keyword}}>
+    <h2>{{title}}</h2>
+        <img src="{{image}}" alt="{{keyword}}">
+        <p>{{description}}</p>
+      </section>
+  </script>
   </head>
   <body>
     <header>
@@ -11,18 +19,25 @@
       <select id = 'menu'>
         <option value="default">Filter by Keyword</option>
       </select>
+      <select id='sort'>
+        <option value="default">Sort Options</option>
+        <option value="horns">Number of Horns</option>
+        <option value="name">Name</option>
+      </select>
     </header>
     <main>
-      <section id="photo-template">
+      <!-- <section id="photo-template">
         <h2></h2>
         <img src="" alt="">
         <p></p>
-      </section>
+      </section> -->
     </main>
     <footer>
       &copy; 2018 Code Fellows
     </footer>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-      </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  </body>
+
 </html>

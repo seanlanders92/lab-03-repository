@@ -34,21 +34,28 @@ function Monster(obj){
 }
 
 Monster.prototype.render = function(){
-    const myTemplate = $('#photo-template').html();
+    const templateSource = $('#photo-template').html();
 
-    const $horns = $('<section></section>').attr('class', this.keyword);
+    const myTemplate = Handlebars.compile(templateSource);
+    // const $myTemplate = $('<section></section>').attr('class', this.keyword);
+    
+    let stringPara = this.description + '. There are ' + this.horns + ' horn(s) on the ' + this.title + '.';
 
-    $horns.html(myTemplate);
+    const context = { keyword: this.keyword, title: this.title, image: this.image, keyword: this.keyword, description: stringPara};
 
-    $horns.find('h2').text(this.title);
+    const html = myTemplate(context);
+    $('main').append(html);
+    // $myTemplate.html(templateSource);
 
-    $horns.find('img').attr('src', this.image);
+    // $myTemplate.find('h2').text(this.title);
 
-    $horns.find('img').attr('alt', this.keyword);
+    // $myTemplate.find('img').attr('src', this.image);
 
-    $horns.find('p').text(this.description + '. There are ' + this.horns + ' horn(s) on the ' + this.title + '.');
+    // $myTemplate.find('img').attr('alt', this.keyword);
 
-    $('main').append($horns);
+    // $myTemplate.find('p').text(this.description + '. There are ' + this.horns + ' horn(s) on the ' + this.title + '.');
+
+    // $('main').append($myTemplate);
 }
 
 const menuRender =() => {   
