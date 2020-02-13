@@ -1,10 +1,15 @@
 *{
+    margin: auto;
     max-width: 960px;
+    background-color: blanchedalmond;
 }
 main{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
     order: 2;
+    font-family: 'Roboto', sans-serif;
 }
 
 img{
@@ -12,9 +17,20 @@ img{
     height: auto;
 }
 header{
+    font-family: 'Marcellus', serif;
     order: 1;
+    line-height: 5em;
 }
 footer{
     order: 3;
 
+}
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 200px;
+    height: 300px;
+    margin-bottom: 5em;
 }

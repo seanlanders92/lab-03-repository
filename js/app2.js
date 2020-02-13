@@ -69,35 +69,41 @@ const menuRender =() => {
     })
 }
 
-$('#menu').change(function(){
+$('#sort').change(function () {
     // $(document).ready();
     //change style
     // $('section').filter(event.target.value)
 
 
-    if(event.target.value === 'default'){
-        $('section').hide();
-    } else {
-        $('section').hide();
-        $(`.${event.target.value}`).show();
-        // let x = $(e.target.getAttribute('value'))
-        // $(x).show();
+    if (event.target.value === 'horns') {
+        monsterArr.sort((a, b) => {
+            if (a.horns > b.horns) {
+                return 1;
+            } else if (a.horns < b.horns) {
+                return -1;
+            } else {
+                return 0;
+            }
+        })
+    } else if (event.target.value === 'name') {
+        monsterArr.sort((a, b) => {
+            if (a.title > b.title) {
+                return 1;
+            } else if (a.title < b.title) {
+                return -1;
+            } else {
+                return 0;
+            }
+
+            // $('section').hide();
+            // $(`.${event.target.value}`).show();
+            // // let x = $(e.target.getAttribute('value'))
+            // // $(x).show();
+        })
     }
-
+    console.log(monsterArr);
+    $('section').empty();
+    monsterArr.forEach(element => {
+        element.render();
+    })
 })
-
-
-
-// {
-//     "image_url": "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg",
-//     "title": "UniWhal",
-//     "description": "A unicorn and a narwhal nuzzling their horns",
-//     "keyword": "narwhal",
-//     "horns": 1
-//   }
-
-//   <section id="photo-template">
-//         <h2></h2>
-//         <img src="" alt="">
-//         <p></p>
-//       </section>
